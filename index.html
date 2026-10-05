@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Sistema de Exaustão de Emergência</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #eeeeee;
+        text-align: center;
+        margin: 0;
+        padding: 40px;
+      }
+
+      .dashboard {
+        max-width: 500px;
+        margin: auto;
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      h1 {
+        margin-bottom: 30px;
+      }
+
+      .sensor {
+        margin: 20px 0;
+        font-size: 18px;
+      }
+
+      .sensor input {
+        width: 20px;
+        height: 20px;
+      }
+
+      #saida {
+        margin-top: 30px;
+        padding: 20px;
+        border-radius: 10px;
+        font-size: 24px;
+        font-weight: bold;
+        background: #ddd;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="dashboard">
+      <h1>Sistema de Exaustão de Emergência</h1>
+
+      <div class="sensor">
+        <label>
+          <input type="checkbox" id="A" onchange="verificar()" />
+          A - Sensor de Fumaça
+        </label>
+      </div>
+
+      <div class="sensor">
+        <label>
+          <input type="checkbox" id="B" onchange="verificar()" />
+          B - Sensor de Temperatura
+        </label>
+      </div>
+
+      <div class="sensor">
+        <label>
+          <input type="checkbox" id="C" onchange="verificar()" />
+          C - Manutenção
+        </label>
+      </div>
+
+      <div id="saida">EXAUSTÃO DESLIGADA</div>
+    </div>
+
+    <script>
+      function verificar() {
+        let A = document.getElementById("A").checked;
+        let B = document.getElementById("B").checked;
+        let C = document.getElementById("C").checked;
+
+        let S = A || (B && !C);
+
+        if (S) {
+          document.getElementById("saida").innerHTML = "EXAUSTÃO LIGADA";
+        } else {
+          document.getElementById("saida").innerHTML = "EXAUSTÃO DESLIGADA";
+        }
+      }
+    </script>
+  </body>
+</html>
